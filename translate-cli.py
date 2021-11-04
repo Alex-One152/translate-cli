@@ -1,5 +1,7 @@
 from mtranslate import translate
 import argparse
+import os
+
 
 parser = argparse.ArgumentParser(description='CLI переводчик основанный на Google translate API')
 parser.add_argument("-l", "--language", help="язык на который выполняется перевод (default ru).", default="ru")
@@ -12,6 +14,9 @@ def shell_CLI():
             if text == "exit()" or text == "quit()":
                 print("bye", "\n")
                 break
+            if text == "clear()":
+                os.system('cls' if os.name == 'nt' else 'clear')
+                text = ""
             results = translate(text, args.language)
             print("\n", results, "\n")
             
